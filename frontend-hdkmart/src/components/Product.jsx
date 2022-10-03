@@ -7,7 +7,7 @@ const Product = ({ product }) => {
     return (
         <Card className='my-3 p-3 rounded'>
             <Link to={`/product/${product._id}`}>
-                <Card.Img src={product.image} variant='top' />
+                <Card.Img src={product.photo} alt={product.name} variant='top' />
             </Link>
             <Card.Body>
                 <Link to={`/product/${product._id}`}>
@@ -16,10 +16,10 @@ const Product = ({ product }) => {
                     </Card.Title>
                 </Link>
                 <Card.Text as='div'>
-                    <Rating value={product.rating} text={`${product.numReviews} reviews`} />
+                    <Rating value={product.quantity} text={`${product.quantity} đánh giá`} />
                 </Card.Text>
                 <Card.Text as='h3'>
-                    ${product.price}
+                    {product.price} VNĐ
                 </Card.Text>
             </Card.Body>
         </Card>
