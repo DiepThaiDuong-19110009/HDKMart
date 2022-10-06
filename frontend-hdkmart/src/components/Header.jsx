@@ -20,7 +20,7 @@ const Header = () => {
 
     return (
         <header>
-            <Navbar bg="dark" variant='dark' expand="lg" collapseOnSelect>
+            <Navbar bg="success" variant='dark' expand="lg" collapseOnSelect>
                 <Container>
                     <LinkContainer to='/'>
                         <Navbar.Brand>HDKMart</Navbar.Brand>
@@ -34,7 +34,7 @@ const Header = () => {
                                 </Nav.Link>
                             </LinkContainer>
                             {userInfo ? (
-                                <NavDropdown title={userInfo.name} id='username'>
+                                <NavDropdown title={userInfo.user.name} id='username'>
                                     <LinkContainer to='/profile'>
                                         <NavDropdown.Item>Thông tin</NavDropdown.Item>
                                     </LinkContainer>

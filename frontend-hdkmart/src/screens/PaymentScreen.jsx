@@ -40,7 +40,6 @@ const PaymentScreen = () => {
                     <Button type='submit' variant='primary'>Tiếp tục</Button>
                 </Form.Group>
             </Form>
-
         </FormContainer>
     )
 }
