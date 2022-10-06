@@ -17,6 +17,7 @@ const ProductScreen = () => {
 
     const productDetails = useSelector(state => state.productDetails)
     const { loading, error, product } = productDetails
+    console.log('==',product);
 
     useEffect(() => {
         dispatch(listProductDetails(productId))

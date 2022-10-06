@@ -1,49 +1,43 @@
-import {
-    USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS,
-    USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS,
-    USER_LOGOUT,
-    USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS
-} from "../constants/userConstants";
+import { ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_CREATE_FAIL } from "../constants/orderConstants";
 
-import axios from 'axios'
-
-// Login
-export const login = (email, password) => async (dispatch) => {
+export const createOrder = (order) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: USER_LOGIN_REQUEST
+            type: ORDER_CREATE_REQUEST
         })
+
+        const {
+            userLogin: {userInfo},
+        } = getState()
 
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                "Accept": "application/json"
+                // Authorization: `Bearer ${userInfo.token}`
             }
         }
 
         const { data } = await axios.post('http://localhost:5000/api/signin', { email, password }, config)
 
         dispatch({
-            type: USER_LOGIN_SUCCESS,
-            payload: data
+            type: ORDER_CREATE_SUCCESS,
+            payload: data.user
         })
 
-        localStorage.setItem('userInfo', JSON.stringify(data))
+        localStorage.setItem('userInfo', JSON.stringify(data.user))
     } catch (error) {
         dispatch({
-            type: USER_LOGIN_FAIL,
+            type: ORDER_CREATE_FAIL,
             payload: error.response && error.response.data.error ? error.response.data.error : error.error,
         })
     }
 }
 
-// Logout
 export const logout = () => (dispatch) => {
     localStorage.removeItem('userInfo')
     dispatch({ type: USER_LOGOUT })
 }
 
-// Register
 export const register = (username, email, password) => async (dispatch) => {
     try {
         dispatch({
@@ -74,38 +68,6 @@ export const register = (username, email, password) => async (dispatch) => {
         dispatch({
             type: USER_REGISTER_FAIL,
             payload: error.response && error.response.data.error ? error.response.data.error : error.error,
-        })
-    }
-}
-
-//user Detail
-export const getUserDetails = (id) => async (dispatch, getState) => {
-    try {
-        dispatch({
-            type: USER_DETAILS_REQUEST
-        })
-
-        const { userLogin: { userInfo } } = getState()
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                "Accept": "application/json",
-                Authorization: `Bearer ${userInfo.token}`
-            }
-        }
-
-        const { data } = await axios.get(`http://localhost:5000/api/user/${id}`, config)
-
-        dispatch({
-            type: USER_DETAILS_SUCCESS,
-            payload: data
-        })
-
-    } catch (error) {
-        dispatch({
-            type: USER_DETAILS_FAIL,
-            payload: error.response && error.response.data.message ? error.response.data.message : error.message,
         })
     }
 }

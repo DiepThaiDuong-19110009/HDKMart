@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, Divider } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
@@ -27,7 +27,7 @@ const ShippingScreen = () => {
 
     return (
         <FormContainer>
-            <CheckoutSteps step1 step2  />
+            <CheckoutSteps step1 step2 />
             <h1>Giao hàng</h1>
             <Form onSubmit={submitHandler}>
                 <Form.Group className='mb-3'>
