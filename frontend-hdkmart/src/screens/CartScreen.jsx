@@ -82,7 +82,10 @@ const CartScreen = () => {
               <h2>Tổng sản phẩm: ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) Sản phẩm</h2>
               Tổng tiền: {cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)} VNĐ
             </ListGroup.Item>
-            <ListGroup.Item class="d-flex justify-content-center py-3">
+            <ListGroup.Item class="d-flex justify-content-evenly py-3">
+              <Button type='button' variant="primary">
+               <Link to='/' style={{textDecoration: 'none', color: 'white'}}>Tiếp tục mua hàng</Link>
+              </Button>
               <Button type='button' variant="success" className='btn-block' disabled={cartItems.length === 0} onClick={checkoutHandler}>
                 Tiến hành thanh toán
               </Button>
