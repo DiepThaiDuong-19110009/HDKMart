@@ -33,3 +33,8 @@ h3 {
 .rating span {
   margin: 0.1rem;
 }
+
+.hoverCate:hover {
+  cursor: pointer;
+  background-color: rgb(243, 243, 243);
+}
